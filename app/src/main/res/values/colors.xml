@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#263238</color>
+    <color name="colorAccent">#FF4081</color>
+        <color name="primary">#273D56</color>
+        <color name="primary_dark">#283593</color>
+        <color name="primary_darker">#1A237E</color>
+        <color name="accent">#FFFFFF</color>
+        <color name="textColor">#000000</color>
+        <color name="selectionColor">#99dfdfdf</color>
+        <color name="transparent">#00000000</color>
+
+        <color name="black">#000000</color>
+        <color name="jet">#222222</color>
+        <color name="oil">#333333</color>
+        <color name="monsoon">#777777</color>
+        <color name="jumbo">#888888</color>
+        <color name="aluminum">#999999</color>
+        <color name="base">#AAAAAA</color>
+        <color name="iron">#CCCCCC</color>
+        <color name="white">#FFFFFF</color>
+    <color name="royalblue">#5888D4</color>
+
+    <!--Chat bubble colors-->
+    <color name="bg_bubble_self">#98FB98</color>
+    <color name="bg_bubble_watson">#44110f0f</color>
+
+</resources>
