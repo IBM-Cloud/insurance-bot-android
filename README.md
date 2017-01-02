@@ -1,5 +1,6 @@
 # Cloud Insurance Co. - Android client
 
+[![Build Status](https://travis-ci.org/IBM-Bluemix/insurance-bot-android.svg?branch=master)](https://travis-ci.org/IBM-Bluemix/insurance-bot-android)
 
 This service is part of the larger [Cloud Insurance Co.](https://github.com/IBM-Bluemix/cloudco-insurance) project.
 
