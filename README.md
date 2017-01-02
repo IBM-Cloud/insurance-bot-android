@@ -7,9 +7,11 @@ This service is part of the larger [Cloud Insurance Co.](https://github.com/IBM-
 
 A native android app to interact with the chat bot integrated in the [Cloud Insurance Co.](https://github.com/IBM-Bluemix/cloudco-insurance) application.
 
-<img src="images/login.png" width="200"/>
+<p align="center"><img src="images/login.png" width="200"/>
 <img src="images/home.png" width="200"/>
 <img src="images/chat.png" width="200"/>
+</p>
+
 
 ## Application Requirements
 
@@ -29,12 +31,6 @@ A native android app to interact with the chat bot integrated in the [Cloud Insu
   ```
 
   * or Download and extract the source code from [this archive](https://github.com/IBM-Bluemix/insurance-bot-android/archive/master.zip)
-
-1. Change to the checkout directory
-
-  ```
-  cd insurance-bot-android
-  ```
 
 1. Launch Android Studio and Select "Open an existing Android Studio Project". Navigate to insurance-bot-android folder and Click OK.
 
