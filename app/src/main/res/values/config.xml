@@ -2,7 +2,7 @@
 
 <resources>
     <!-- Hosted Url -->
-    <string name="hosted_url">http://cloudco.mybluemix.net</string>
+    <string name="hosted_url">http://dev-cloudco.mybluemix.net</string>
 
     <!-- api routes -->
     <string name="ana">/api/ana</string>

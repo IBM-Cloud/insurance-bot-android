@@ -94,7 +94,7 @@ public class ChatActivity  extends AppCompatActivity {
     private void sendMessage() {
         final String requestMessage = this.inputMessage.getText().toString().trim();
         final boolean initialrequest = this.initialRequest;
-        if(! this.initialRequest && genericCheck.checkText(requestMessage)) {
+        if(!this.initialRequest && genericCheck.checkText(requestMessage)) {
             Message inputMessage = new Message();
             inputMessage.setMessage(requestMessage);
             inputMessage.setId("1");
@@ -105,11 +105,13 @@ public class ChatActivity  extends AppCompatActivity {
             Message inputMessage = new Message();
             inputMessage.setMessage(requestMessage);
             inputMessage.setId("100");
+            this.initialRequest = false;
 
         }
         else {
             Toast.makeText(this, "Enter a request", Toast.LENGTH_LONG).show();
             this.initialRequest = false;
+            return;
         }
 
         mAdapter.notifyDataSetChanged();
@@ -121,9 +123,7 @@ public class ChatActivity  extends AppCompatActivity {
                     String response = "";
 
                     PostOkHttp okHttpPost = new PostOkHttp();
-                    
-                    //One more check as this is a new thread
-                    json = okHttpPost.textJson(requestMessage, context,initialrequest);
+                    json = okHttpPost.textJson(requestMessage, context, initialrequest);
                     Log.i(TAG,"JSON Request"+json);
 
                     //Pull the url and other API routes.
@@ -131,7 +131,9 @@ public class ChatActivity  extends AppCompatActivity {
                     String hosted_url = mContext.getString(R.string.hosted_url);
                     String ana_route = mContext.getString(R.string.ana);
 
-                    response = okHttpPost.post(hosted_url+ana_route, json, cookie);
+                    if(genericCheck.checkText(json)) {
+                        response = okHttpPost.post(hosted_url + ana_route, json, cookie);
+                    }
                     Log.i(TAG,"JSON Response"+response);
 
                     //Gson Initialization for Json to Java Object and Vice Versa

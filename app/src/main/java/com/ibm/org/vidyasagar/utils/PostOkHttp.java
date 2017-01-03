@@ -4,9 +4,7 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.ibm.org.vidyasagar.models.ChatRequest;
-import com.ibm.org.vidyasagar.models.ChatResponse;
 import com.ibm.org.vidyasagar.models.Context;
-import com.ibm.org.vidyasagar.models.Input;
 
 import java.io.IOException;
 
@@ -50,13 +48,12 @@ public class PostOkHttp {
         if(initialRequest)
           return gson.toJson(request);
 
-      else {
+        else {
+            request.setText(textMessage);
+            request.setContext(context);
+            return gson.toJson(request);
 
-          request.setText(textMessage);
-          request.setContext(context);
-          return gson.toJson(request);
-      }
-
+        }
 
     }
 }
