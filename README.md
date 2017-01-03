@@ -25,7 +25,7 @@ A native android app to interact with the chat bot integrated in the [Cloud Insu
 
 1. Ensure Gradle is properly setup in your environment.
 
-1. Clone the app to your local environment from your terminal using the following command:
+1. Clone the app to your local environment from your terminal or command prompt(on windows) using the following command:
 
   ```
   git clone https://github.com/IBM-Bluemix/insurance-bot-android.git
