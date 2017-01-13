@@ -111,11 +111,12 @@ public class LoginActivity extends AppCompatActivity {
         Thread thread = new Thread(new Runnable(){
             public void run() {
                 HttpURLConnection client = null;
-                
+
                 try {
 
+
                     //Http POST call for login
-                    String postUrl=hosted_url + login_route +"?email="+ email + "&password=" + password;
+                    String postUrl=hosted_url + login_route +"?username="+ email + "&password=" + password;
                     URL url = new URL(postUrl);
                     client = (HttpURLConnection) url.openConnection();
                     client.setRequestMethod("POST");
@@ -124,53 +125,31 @@ public class LoginActivity extends AppCompatActivity {
 
                     Log.d(TAG,"POSTResponseCode" + client.getResponseCode());
 
-                    //Check Http 302 - Redirection
-                    if (client.getResponseCode() ==
-                            HttpURLConnection.HTTP_MOVED_TEMP || client.getResponseCode() ==
-                            HttpURLConnection.HTTP_MOVED_PERM) {
+                    if (client.getResponseCode() == HttpURLConnection.HTTP_OK) {
 
-                            // get location of the redirect.
-                            String getLocation = client.getHeaderField("Location");
-                            Log.d(TAG,"getLocation" + getLocation);
+                        StringBuilder result = new StringBuilder();
+                        InputStream in = new BufferedInputStream(client.getInputStream());
+                        BufferedReader reader = new BufferedReader(new InputStreamReader(in));
 
-                            // get the cookie value of the redirect.
-                            String cookieValue =  client.getHeaderField("Set-Cookie");
-                            Log.d(TAG,"CookieValue" + cookieValue);
+                        String line;
+                        while ((line = reader.readLine()) != null) {
+                            result.append(line);
+                        }
+                        Log.d(TAG,"RESULT"+result.toString());
 
-                            StringBuilder result = new StringBuilder();
-                            URL getRequestUrl = new URL(hosted_url+getLocation);
-                            Log.d(TAG,"URL"+getRequestUrl);
+                        // JSon to Java Object mapping
+                        Gson gson = new Gson();
+                        user = gson.fromJson(result.toString(),User.class);
+                        Log.d(TAG,"USER:" + user.username);
 
-                            //Http GET call after redirection to validate the credentials
-                            client = (HttpURLConnection) getRequestUrl.openConnection();
-
-                            if(cookieValue!=null){
-                                client.setRequestProperty("Cookie", cookieValue);
-                                bundle.putString("cookie",cookieValue);
-                            }
-                            client.setRequestMethod("GET");
-                            client.setDoInput(true);
-
-                            if (client.getResponseCode() == HttpURLConnection.HTTP_OK) {
-                                InputStream in = new BufferedInputStream(client.getInputStream());
-                                BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-
-                                String line;
-                                while ((line = reader.readLine()) != null) {
-                                    result.append(line);
-                                }
-                                Log.d(TAG,"RESULT"+result.toString());
-
-                                // JSon to Java Object mapping
-                                Gson gson = new Gson();
-                                user = gson.fromJson(result.toString(),User.class);
-                                Log.d(TAG,"USER:" + user.outcome);
-                            }
-
-                        finalResponseCode = client.getResponseCode();
-                        Log.d(TAG,"ResponseCode of GET" + finalResponseCode);
-
+                        // capture the session cookie for later use
+                        String cookieValue =  client.getHeaderField("Set-Cookie");
+                        Log.d(TAG,"CookieValue" + cookieValue);
+                        bundle.putString("cookie",cookieValue);
                     }
+
+                    finalResponseCode = client.getResponseCode();
+                    Log.d(TAG,"ResponseCode of GET" + finalResponseCode);
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -187,7 +166,7 @@ public class LoginActivity extends AppCompatActivity {
                 new Runnable() {
                     public void run() {
                         // On complete call either onLoginSuccess or onLoginFailed
-                        if(user !=null && user.outcome.equals("success") && finalResponseCode == 200) {
+                        if(user !=null && finalResponseCode == 200) {
                             bundle.putString("fname",user.fname);
                             bundle.putString("lname",user.lname);
                             onLoginSuccess();
@@ -259,4 +238,3 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 }
-
