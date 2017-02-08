@@ -124,7 +124,7 @@ public class ChatActivity  extends AppCompatActivity {
 
                     PostOkHttp okHttpPost = new PostOkHttp();
                     json = okHttpPost.textJson(requestMessage, context, initialrequest);
-                    Log.i(TAG,"JSON Request"+json);
+                    Log.i(TAG,"JSON Request "+json);
 
                     //Pull the url and other API routes.
                     mContext = getApplicationContext();
@@ -134,7 +134,7 @@ public class ChatActivity  extends AppCompatActivity {
                     if(genericCheck.checkText(json)) {
                         response = okHttpPost.post(hosted_url + ana_route, json, cookie);
                     }
-                    Log.i(TAG,"JSON Response"+response);
+                    Log.i(TAG,"JSON Response "+response);
 
                     //Gson Initialization for Json to Java Object and Vice Versa
                     Gson gson =new Gson();

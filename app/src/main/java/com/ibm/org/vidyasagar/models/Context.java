@@ -41,6 +41,12 @@ public class Context {
     @SerializedName("chosen_procedure")
     @Expose
     private String chosenProcedure;
+    @SerializedName("claim_step")
+    @Expose
+    private String claimStep;
+    @SerializedName("claim_procedure")
+    @Expose
+    private String claimProcedure;
 
     public System getSystem() {
         return system;
@@ -122,4 +128,11 @@ public class Context {
         this.chosenProcedure = chosenProcedure;
     }
 
+    public String getClaimStep() { return claimStep; }
+
+    public void setClaimStep(String claimStep) { this.claimStep = claimStep; }
+
+    public String getClaimProcedure() { return claimProcedure; }
+
+    public void setClaimProcedure(String claimProcedure) { this.claimProcedure = claimProcedure; }
 }
