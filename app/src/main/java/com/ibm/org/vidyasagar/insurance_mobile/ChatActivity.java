@@ -1,11 +1,11 @@
 package com.ibm.org.vidyasagar.insurance_mobile;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -23,7 +23,6 @@ import com.ibm.org.vidyasagar.models.ChatResponse;
 import com.ibm.org.vidyasagar.models.Message;
 import com.ibm.org.vidyasagar.utils.Check;
 import com.ibm.org.vidyasagar.utils.PostOkHttp;
-
 
 import java.util.ArrayList;
 
@@ -141,6 +140,7 @@ public class ChatActivity  extends AppCompatActivity {
 
                     if(genericCheck.checkText(response)) {
                         ChatResponse gsonOutput = gson.fromJson(response, ChatResponse.class);
+                        //Log.i(TAG,"ENTITIES "+gsonOutput.);
                         Message outMessage=new Message();
                         //Watson Conversation Service Context to be added to the following request.
                         if (gsonOutput.getContext() != null) {
@@ -148,7 +148,6 @@ public class ChatActivity  extends AppCompatActivity {
                             context = gsonOutput.getContext();
                             Log.i(TAG,gson.toJson(context));
                         }
-
                         final String outputmessage = gsonOutput.getOutput().getText();
                         outMessage.setMessage(outputmessage);
                         outMessage.setId("2");
@@ -169,6 +168,22 @@ public class ChatActivity  extends AppCompatActivity {
 
                 } catch (Exception e) {
                     e.printStackTrace();
+                    if(e.getMessage().contains("Expected BEGIN_OBJECT but was STRING at"))
+                    {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                AlertDialog.Builder alert = new AlertDialog.Builder(ChatActivity.this);
+                                alert.setTitle("Not a valid date");
+                                alert.setMessage("Input a present or past date in YYYY-MM-DD format");
+                                alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int whichButton) {
+                                    }
+                                });
+                                alert.show();
+                            }
+                        });
+                    }
                 }
             }
         });
