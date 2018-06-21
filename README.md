@@ -1,12 +1,15 @@
+# 2018-06-21: Making the project inactive, archiving this repository
+The Android and iOS client are no longer maintained. Please use the web client only.
+
 # Cloud Insurance Co. - Android client
 
-[![Build Status](https://travis-ci.org/IBM-Bluemix/insurance-bot-android.svg?branch=master)](https://travis-ci.org/IBM-Bluemix/insurance-bot-android)
+[![Build Status](https://travis-ci.org/IBM-Cloud/insurance-bot-android.svg?branch=master)](https://travis-ci.org/IBM-Cloud/insurance-bot-android)
 
-This service is part of the larger [Cloud Insurance Co.](https://github.com/IBM-Bluemix/cloudco-insurance) project.
+This service is part of the larger [Cloud Insurance Co.](https://github.com/IBM-Cloud/cloudco-insurance) project.
 
 # Overview
 
-A native android app to interact with the chat bot integrated in the [Cloud Insurance Co.](https://github.com/IBM-Bluemix/cloudco-insurance) application.
+A native android app to interact with the chat bot integrated in the [Cloud Insurance Co.](https://github.com/IBM-Cloud/cloudco-insurance) application.
 
 <p align="center"><img src="images/login.png" width="200"/>
 <img src="images/home.png" width="200"/>
@@ -21,17 +24,17 @@ A native android app to interact with the chat bot integrated in the [Cloud Insu
 
 ## Running the application with the Android emulator
 
-1. The android app depends on the [Cloud Insurance Bot app](https://github.com/IBM-Bluemix/insurance-bot). Make sure to deploy this app first. The simpler path to deploy this app is to use the [Cloud Insurance toolchain](https://github.com/IBM-Bluemix/insurance-toolchain).
+1. The android app depends on the [Cloud Insurance Bot app](https://github.com/IBM-Cloud/insurance-bot). Make sure to deploy this app first. The simpler path to deploy this app is to use the [Cloud Insurance toolchain](https://github.com/IBM-Cloud/insurance-toolchain).
 
 1. Ensure Gradle is properly setup in your environment.
 
 1. Clone the app to your local environment from your terminal or command prompt(on windows) using the following command:
 
   ```
-  git clone https://github.com/IBM-Bluemix/insurance-bot-android.git
+  git clone https://github.com/IBM-Cloud/insurance-bot-android.git
   ```
 
-  * or Download and extract the source code from [this archive](https://github.com/IBM-Bluemix/insurance-bot-android/archive/master.zip)
+  * or Download and extract the source code from [this archive](https://github.com/IBM-Cloud/insurance-bot-android/archive/master.zip)
 
 1. Launch Android Studio and Select "Open an existing Android Studio Project". Navigate to insurance-bot-android folder and Click OK.
 
